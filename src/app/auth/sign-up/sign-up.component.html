@@ -1,0 +1,32 @@
+<h1>Create an Account</h1>
+<form class="ui form" [formGroup]="authForm">
+  <app-input
+    label="Username"
+    [control]="authForm.controls['username']"
+    inputType="text"
+  ></app-input>
+  <app-input
+    label="Password"
+    [control]="authForm.controls['password']"
+    inputType="password"
+  ></app-input>
+  <app-input
+    label="Password Confirmation"
+    [control]="authForm.controls['passwordConfirmation']"
+    inputType="password"
+  ></app-input>
+
+  <div
+    *ngIf="
+      authForm.get('password')?.touched &&
+      authForm.get('passwordConfirmation')?.touched &&
+      authForm.errors
+    "
+    class="ui red basic label"
+  >
+    <p>Password and Password Confirmation must be identical.</p>
+  </div>
+
+  <button class="ui submit button primary">Submit</button>
+  <!-- {{ authForm.errors | json }} -->
+</form>
