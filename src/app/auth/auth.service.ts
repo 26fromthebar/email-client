@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { BehaviorSubject, tap } from 'rxjs';
 import { SignupCredentials } from '../shared/interfaces/signup-credentials';
 import { SignupResponse } from '../shared/interfaces/signup-response';
-import { BehaviorSubject, tap } from 'rxjs';
+import { SignedInResponse } from '../shared/interfaces/signed-in-response';
 
 @Injectable({
   providedIn: 'root',
@@ -25,9 +26,7 @@ export class AuthService {
 
   signup(credentials: SignupCredentials) {
     return this.http
-      .post<SignupResponse>(`${this.rootUrl}/auth/signup`, credentials, {
-        withCredentials: true,
-      })
+      .post<SignupResponse>(`${this.rootUrl}/auth/signup`, credentials)
       .pipe(
         tap(() => {
           this.signedIn$.next(true);
@@ -37,11 +36,19 @@ export class AuthService {
 
   checkAuthStatus() {
     return this.http
-      .get<any>(`${this.rootUrl}/auth/signedin`, { withCredentials: true })
+      .get<SignedInResponse>(`${this.rootUrl}/auth/signedin`)
       .pipe(
-        tap((response) => {
-          console.log(response);
+        tap(({ authenticated }) => {
+          this.signedIn$.next(authenticated);
         })
       );
+  }
+
+  signout() {
+    return this.http.post<any>(`${this.rootUrl}/auth/signout`, {}).pipe(
+      tap(() => {
+        this.signedIn$.next(false);
+      })
+    );
   }
 }
