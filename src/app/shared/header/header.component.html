@@ -1,0 +1,39 @@
+<div class="ui secondary pointing menu">
+  <a [routerLink]="['/']" routerLinkActive="active" class="item"
+    >Angular Email</a
+  >
+  <div class="right menu">
+    <a
+      [routerLink]="['/inbox']"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      *ngIf="signedIn$ | async"
+      class="ui item"
+      >Inbox</a
+    >
+    <a
+      [routerLink]="['/auth/signout']"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      *ngIf="signedIn$ | async"
+      class="ui item"
+      >Sign Out</a
+    >
+    <a
+      [routerLink]="['/auth/signin']"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      *ngIf="!(signedIn$ | async)"
+      class="ui item"
+      >Sign In</a
+    >
+    <a
+      [routerLink]="['/auth/signup']"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      *ngIf="!(signedIn$ | async)"
+      class="ui item"
+      >Sign Up</a
+    >
+  </div>
+</div>
