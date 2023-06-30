@@ -1,5 +1,9 @@
 <div class="ui secondary pointing menu">
-  <a [routerLink]="['/']" routerLinkActive="active" class="item"
+  <a
+    [routerLink]="['/']"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="item"
     >Angular Email</a
   >
   <div class="right menu">
