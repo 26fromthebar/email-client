@@ -12,3 +12,14 @@ a.active::before {
   font-size: 1.25rem;
   margin-right: 0.75rem;
 }
+
+.content {
+  width: 90%;
+}
+
+.trim {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+}
