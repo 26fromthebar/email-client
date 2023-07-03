@@ -1,0 +1,14 @@
+.item a {
+  color: black;
+}
+
+a.active {
+  display: flex;
+  align-items: center;
+}
+
+a.active::before {
+  content: ">";
+  font-size: 1.25rem;
+  margin-right: 0.75rem;
+}
