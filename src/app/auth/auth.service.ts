@@ -14,6 +14,7 @@ import { error } from 'console';
 export class AuthService {
   rootUrl = 'https://api.angular-email.com';
   signedIn$ = new BehaviorSubject(false);
+  username = '';
 
   constructor(private http: HttpClient) {}
 
@@ -30,7 +31,8 @@ export class AuthService {
     return this.http
       .post<SignupResponse>(`${this.rootUrl}/auth/signup`, credentials)
       .pipe(
-        tap(() => {
+        tap((response) => {
+          this.username = response.username;
           this.signedIn$.next(true);
         })
       );
@@ -61,6 +63,7 @@ export class AuthService {
       })
       .pipe(
         tap((response) => {
+          this.username = response.username;
           this.signedIn$.next(true);
         })
       );
