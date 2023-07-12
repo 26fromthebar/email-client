@@ -44,6 +44,7 @@ export class AuthService {
       .pipe(
         tap((response) => {
           this.signedIn$.next(response.authenticated);
+          this.username = response.username;
         })
       );
   }
@@ -58,7 +59,7 @@ export class AuthService {
 
   signin(credentials: SigninCredentials) {
     return this.http
-      .post<any>(`${this.rootUrl}/auth/signin`, {
+      .post<SignedInResponse>(`${this.rootUrl}/auth/signin`, {
         credentials,
       })
       .pipe(

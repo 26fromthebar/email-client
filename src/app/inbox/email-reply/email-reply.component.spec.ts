@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmailReplyComponent } from './email-reply.component';
+import EmailReplyComponent from './email-reply.component';
 
 describe('EmailReplyComponent', () => {
   let component: EmailReplyComponent;
@@ -8,9 +8,8 @@ describe('EmailReplyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EmailReplyComponent ]
-    })
-    .compileComponents();
+      declarations: [EmailReplyComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
